@@ -1,0 +1,141 @@
+MorphLex progress log
+====================
+
+Project status: planning complete, implementation not started
+Version target: v0.1 desktop application (Windows-first, local-first)
+
+----------------------------------------
+1. What is already locked
+----------------------------------------
+
+Product identity
+- Working name locked: MorphLex
+- Core definition locked: local-first morphology visualization vocabulary tool
+- Product scope locked for v0.1
+
+Platform and architecture
+- Desktop app only
+- Tauri + React + Vite + TypeScript + SQLite
+- Windows-first
+- Single main window
+- Single routed main content area
+- No multi-window workflow
+
+Core data model
+- One import action = one session
+- One session may contain multiple batches
+- Each batch max 120 words
+- Global word table deduplicated
+- Session/batch keep relational links
+- Morpheme categories: prefix / root / suffix
+- Word may map to multiple morphemes
+- Unrecognized words must be preserved and marked
+
+Feature scope locked in MVP
+- Guest mode only
+- Account panel UI only
+- Phone binding placeholder only
+- Cloud sync placeholder only
+- Local avatar upload
+- Local settings persistence
+- Batch import by text / txt / csv
+- Over-limit split confirmation
+- Import history
+- Session detail
+- Session-scoped search
+- Re-analyze current session
+- Delete current session
+- Morpheme collection pages
+- Word detail modal
+- Root-only generate-more
+- AI provider abstraction reserved
+- Local mock analysis only
+
+Out of scope locked
+- Real login
+- Real SMS
+- Real cloud sync
+- Multi-device sync
+- Export
+- Word-level deletion
+- Manual editing of analysis results
+- Manual append to existing session
+- Mobile adaptation
+- Spaced repetition / review engine
+- Check-in / streak system
+- Collaboration / sharing
+- Online-dependent AI analysis
+
+----------------------------------------
+2. Documentation completed
+----------------------------------------
+
+Completed files
+- AGENTS.md
+- PRD.md
+- APP_FLOW.md
+- TECH_STACK.md
+- FRONTEND_GUIDELINES.md
+- BACKEND_STRUCTURE.md
+- IMPLEMENTATION_PLAN.md
+- progress.txt
+
+Status of docs
+- Product requirements frozen enough for implementation
+- Route map frozen
+- Design system frozen at token level
+- Backend schema frozen at first-pass implementation level
+- Build sequence frozen at milestone level
+
+----------------------------------------
+3. What has NOT been implemented yet
+----------------------------------------
+
+Code status
+- Project scaffold not created yet
+- No dependencies installed yet
+- No Tauri shell initialized yet
+- No SQLite migrations written yet
+- No frontend routes implemented yet
+- No stores, services, or commands implemented yet
+- No mock dictionary resources created yet
+- No tests added yet
+
+----------------------------------------
+4. Recommended next step
+----------------------------------------
+
+Immediate next milestone
+- Start Phase 1 from IMPLEMENTATION_PLAN.md
+
+Recommended concrete first actions
+1. Bootstrap Tauri + React + Vite + TypeScript project
+2. Install locked dependencies from TECH_STACK.md
+3. Create folder structure from IMPLEMENTATION_PLAN.md
+4. Add Tailwind and global token CSS
+5. Commit clean scaffold before feature code
+
+----------------------------------------
+5. Risks to watch
+----------------------------------------
+
+Main implementation risks
+- Frontend preview count drifting from backend cleaning rules
+- Session-level data and global word dedupe logic being mixed incorrectly
+- Morpheme detail UI being implemented before backend data shape stabilizes
+- AI provider abstraction leaking into UI too early
+- Over-designing visual polish before import loop is complete
+
+----------------------------------------
+6. Rules for future updates to this file
+----------------------------------------
+
+Update this file after each major feature completion.
+Every update should include:
+- what was built
+- what works
+- what is broken
+- what changed in scope, if anything
+- what should happen next
+
+Do not leave this file stale between implementation sessions.
