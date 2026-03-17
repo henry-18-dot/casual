@@ -6,6 +6,13 @@ const suffixes = ['tion', 'able', 'ment', 'ness', 'ology', 'ist', 'ive', 'ize', 
 
 const pool: Record<MorphemeType, string[]> = { prefix: prefixes, root: roots, suffix: suffixes };
 
+export function extractMorphemeBreakdown(word: string): { text: string; type: MorphemeType }[] {
+  const normalized = word.toLowerCase();
+  const breakdown = (['prefix', 'root', 'suffix'] as MorphemeType[])
+    .flatMap((type) => pool[type].filter((m) => normalized.includes(m)).map((m) => ({ text: m, type })));
+  return Array.from(new Map(breakdown.map((b) => [`${b.type}-${b.text}`, b])).values());
+}
+
 export function cleanInput(input: string): { words: string[]; cleanedCount: number; unrecognized: string[] } {
   const pieces = input
     .split(/[\s,;\n\r\t]+/g)
@@ -47,9 +54,34 @@ export function analyzeWords(words: string[]): Morpheme[] {
 }
 
 export function getWordDetail(word: string): WordDetail {
+  const normalized = word.toLowerCase();
+  const deduped = extractMorphemeBreakdown(word);
   return {
-    phonetic: `/${word.slice(0, 3)}.../`,
-    meaning: `${word} 的示例释义（本地 mock）`,
-    example: `This is a sentence using ${word}.`,
+    word,
+    phonetic: `/${normalized}/`,
+    meaning: `${word} 的简明释义（本地示例，可接入词典或 Deepseek 优化）。`,
+    breakdown: deduped,
+    examples: [
+      {
+        type: 'general',
+        text: `I keep a ${word} on my desk for quick reference.`,
+        translation: `我把 ${word} 放在书桌上，方便随时查阅。`,
+      },
+      {
+        type: 'general',
+        text: `They decided to ${word} the plan before the meeting.`,
+        translation: `他们决定在会议前先 ${word} 这个计划。`,
+      },
+      {
+        type: 'academic',
+        text: `The ${word} was documented in the final report.`,
+        translation: `该 ${word} 已在最终报告中被记录。`,
+      },
+      {
+        type: 'academic',
+        text: `Researchers ${word} the data to test the hypothesis.`,
+        translation: `研究人员对数据进行了 ${word} 以验证假设。`,
+      },
+    ],
   };
 }

@@ -1,9 +1,11 @@
 export type MorphemeType = 'prefix' | 'root' | 'suffix';
 
 export interface WordDetail {
+  word: string;
   phonetic: string;
   meaning: string;
-  example: string;
+  breakdown: { text: string; type: MorphemeType }[];
+  examples: { type: 'general' | 'academic'; text: string; translation: string }[];
 }
 
 export interface Morpheme {

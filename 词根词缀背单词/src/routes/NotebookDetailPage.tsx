@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getWordDetail } from '../services/analysis';
 import { useAppStore } from '../stores/useAppStore';
+import { WordDetailModal } from '../components/WordDetailModal';
 
 export function NotebookDetailPage() {
   const { sessionId = '' } = useParams();
@@ -23,16 +23,7 @@ export function NotebookDetailPage() {
         <button onClick={() => regenerateSession(session.id)}>重新分析</button>
         <button onClick={() => { deleteSession(session.id); nav('/notebooks'); }}>删除会话</button>
       </div>
-      {word && (
-        <div className="modal" onClick={() => setWord(null)}>
-          <article onClick={(e) => e.stopPropagation()}>
-            <h3>{word}</h3>
-            <p>{getWordDetail(word).phonetic}</p>
-            <p>{getWordDetail(word).meaning}</p>
-            <p>{getWordDetail(word).example}</p>
-          </article>
-        </div>
-      )}
+      {word && <WordDetailModal word={word} onClose={() => setWord(null)} />}
     </div>
   );
 }

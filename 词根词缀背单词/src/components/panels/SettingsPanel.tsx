@@ -1,9 +1,9 @@
 import { useAppStore } from '../../stores/useAppStore';
 
-export function SettingsPanel({ onClose }: { onClose: () => void }) {
+export function SettingsPanel({ onClose, className }: { onClose: () => void; className?: string }) {
   const { settings, upsertSettings } = useAppStore();
   return (
-    <section className="panel">
+    <section className={className ?? 'panel'}>
       <h3>设置</h3>
       <label>主题</label>
       <select value={settings.theme} onChange={(e) => upsertSettings({ theme: e.target.value as 'dark' | 'light' })}>
