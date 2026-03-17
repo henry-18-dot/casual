@@ -1,0 +1,29 @@
+:root { --bg: #0b1220; --panel: #182132; --text: #dbe7ff; --accent: #3b82f6; font-family: Inter, system-ui, sans-serif; }
+[data-theme='light'] { --bg: #f6f8fb; --panel: #ffffff; --text: #1f2937; }
+[data-accent='orange'] { --accent: #f59e0b; }
+[data-accent='green'] { --accent: #10b981; }
+[data-accent='blue'] { --accent: #3b82f6; }
+[data-accent='purple'] { --accent: #8b5cf6; }
+[data-font='sm'] { font-size: 14px; }
+[data-font='md'] { font-size: 16px; }
+[data-font='lg'] { font-size: 18px; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+a { color: var(--text); text-decoration: none; }
+.shell { display: grid; grid-template-columns: 72px 1fr; min-height: 100vh; }
+.sidebar { background: #0f172a; border-right: 1px solid #334155; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+.sidebar nav { display: flex; flex-direction: column; gap: 8px; }
+.icon-btn { border: 1px solid #334155; color: var(--text); background: transparent; padding: 8px; border-radius: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.icon-btn span { display: none; }
+.icon-btn.active, .icon-btn:hover { border-color: var(--accent); }
+.content { padding: 24px; max-width: 1040px; width: 100%; margin: 0 auto; }
+.page { display: flex; flex-direction: column; gap: 14px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid #334155; border-radius: 12px; padding: 14px; }
+input, textarea, select, button { background: var(--panel); color: var(--text); border: 1px solid #475569; border-radius: 10px; padding: 9px 10px; }
+button { cursor: pointer; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.word-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+.panel { position: fixed; right: 0; top: 0; width: 320px; height: 100vh; background: var(--panel); border-left: 1px solid #334155; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.modal { position: fixed; inset: 0; background: rgb(0 0 0 / .5); display: grid; place-items: center; }
+.modal article { background: var(--panel); width: min(520px, 90vw); padding: 18px; border-radius: 12px; }

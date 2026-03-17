@@ -139,3 +139,34 @@ Every update should include:
 - what should happen next
 
 Do not leave this file stale between implementation sessions.
+
+----------------------------------------
+7. 2026-03-17 update
+----------------------------------------
+What was built
+- Bootstrapped runnable React + Vite + TypeScript app for MorphLex.
+- Implemented app shell with sidebar, routing, account/settings slide-over panels.
+- Implemented core pages: home, import, notebook list/detail, morpheme collection.
+- Implemented local-first persistence using localStorage for sessions, morphemes, and settings.
+- Implemented mock morphology analysis pipeline with cleaning, dedupe, batching, and root expansion.
+- Added basic unit tests for text cleaning and batch splitting utilities.
+
+What works
+- End-to-end create session from text import and auto-navigation.
+- Session search, re-analysis, deletion, and word detail modal.
+- Morpheme browsing by type and root generate-more behavior.
+- Theme/accent/font/avatar settings persisted locally.
+- Build and tests pass in local environment.
+
+What is broken
+- Tauri shell and SQLite backend are not implemented yet; currently browser localStorage only.
+- File upload flow for .txt/.csv is not implemented yet (text paste works).
+- Advanced UI polish and Radix-based modal primitives are pending.
+
+Scope change
+- No scope expansion; implementation focuses on MVP frontend vertical slice first.
+
+Next
+- Replace localStorage data layer with Tauri commands + SQLite migrations.
+- Add true file import parser and split-confirm modal UX for >120 words.
+- Add richer job state pipeline and error recovery UI.
