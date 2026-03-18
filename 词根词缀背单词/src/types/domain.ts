@@ -33,3 +33,23 @@ export interface AppSettings {
   fontSize: 'sm' | 'md' | 'lg';
   avatar: string;
 }
+
+export interface DeepseekDemoState {
+  loading: boolean;
+  lastCheckedAt?: string;
+  connection: {
+    ok: boolean;
+    endpoint: string;
+    model: string;
+    hasApiKey: boolean;
+    reply?: string;
+    error?: string;
+  } | null;
+  result: {
+    morpheme: string;
+    type: MorphemeType;
+    meaning: string;
+    examples: string[];
+  } | null;
+  error?: string;
+}

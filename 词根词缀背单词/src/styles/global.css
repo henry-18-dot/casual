@@ -194,3 +194,18 @@ button { cursor: pointer; }
   color: var(--text);
 }
 .word-pill-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+
+.deepseek-panel { display: flex; flex-direction: column; gap: 14px; }
+.deepseek-panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.status-badge { border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; color: var(--muted); }
+.status-badge.ok { border-color: var(--accent); color: var(--accent); }
+.deepseek-form input { min-width: 260px; flex: 1; }
+.deepseek-meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 13px; }
+.deepseek-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.deepseek-result-card { background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.deepseek-result-card h4 { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .cards, .deepseek-grid { grid-template-columns: 1fr; }
+}

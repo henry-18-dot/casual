@@ -59,6 +59,64 @@ export interface DeepseekMorphemeDetail {
   examples: string[];
 }
 
+export interface DeepseekConnectionReport {
+  ok: boolean;
+  endpoint: string;
+  model: string;
+  hasApiKey: boolean;
+  reply?: string;
+  error?: string;
+}
+
+export async function probeDeepseekConnection(): Promise<DeepseekConnectionReport> {
+  const endpoint = buildUrl('/v1/chat/completions');
+  if (!baseUrl) {
+    return {
+      ok: false,
+      endpoint,
+      model,
+      hasApiKey: Boolean(apiKey),
+      error: '未配置 DeepSeek Base URL。',
+    };
+  }
+
+  try {
+    const reply = await chat(
+      [
+        { role: 'system', content: 'Reply in plain Chinese within 12 characters.' },
+        { role: 'user', content: '请只回复：连接成功' },
+      ],
+      0,
+    );
+
+    if (!reply) {
+      return {
+        ok: false,
+        endpoint,
+        model,
+        hasApiKey: Boolean(apiKey),
+        error: '接口已返回，但没有拿到有效内容。',
+      };
+    }
+
+    return {
+      ok: true,
+      endpoint,
+      model,
+      hasApiKey: Boolean(apiKey),
+      reply,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      endpoint,
+      model,
+      hasApiKey: Boolean(apiKey),
+      error: error instanceof Error ? error.message : '请求失败',
+    };
+  }
+}
+
 export async function requestDeepseekMorphemeDetail(
   morpheme: string,
   type: 'prefix' | 'root' | 'suffix',
