@@ -209,3 +209,11 @@ button { cursor: pointer; }
 @media (max-width: 900px) {
   .cards, .deepseek-grid { grid-template-columns: 1fr; }
 }
+
+.tool-lab .card { display: flex; flex-direction: column; gap: 12px; }
+.tool-preview { display: flex; flex-direction: column; gap: 8px; }
+.tool-preview img { width: 100%; border-radius: 12px; border: 1px solid var(--border); }
+.tool-form { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.tool-feedback-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.tool-feedback-list li { border: 1px solid var(--border); border-radius: 12px; padding: 10px; background: var(--panel-2); }
+.tool-feedback-list p { margin: 6px 0; }

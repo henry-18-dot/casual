@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { BookText, Files, Home, Puzzle, Settings, UserCircle2 } from 'lucide-react';
+import { BookText, Files, Home, Puzzle, Settings, UserCircle2, Wrench } from 'lucide-react';
 import { useState } from 'react';
 import { AccountPanel } from './panels/AccountPanel';
 import { SettingsPanel } from './panels/SettingsPanel';
@@ -10,6 +10,7 @@ const links = [
   { to: '/import', icon: Files, label: '导入' },
   { to: '/notebooks', icon: BookText, label: '导入记录' },
   { to: '/morphemes', icon: Puzzle, label: '词素库' },
+  { to: '/tools', icon: Wrench, label: '工具' },
 ];
 
 export function Layout() {

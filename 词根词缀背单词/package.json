@@ -7,14 +7,17 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "tool:serve": "node tools_frontend_feedback_server.mjs",
+    "dev:tool": "vite --host 0.0.0.0",
+    "tool:capture": "node scripts/tool-capture.mjs"
   },
   "dependencies": {
+    "lucide-react": "^0.577.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.0.0",
-    "zustand": "^5.0.0",
-    "lucide-react": "^0.577.0"
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
