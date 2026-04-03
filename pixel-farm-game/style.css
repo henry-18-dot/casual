@@ -1,0 +1,139 @@
+/* 使用 :root 声明全局 CSS 变量，方便统一主题颜色。 */
+:root {
+  --bg: #121212; /* 页面背景色：深灰，突出像素画面。 */
+  --panel: #1d1d1d; /* 面板背景色。 */
+  --text: #f5f5f5; /* 主文本颜色。 */
+  --accent: #ffd54f; /* 强调色，用于标题或重点信息。 */
+}
+
+/* 通配选择器把盒模型改成 border-box，布局更稳定。 */
+* {
+  box-sizing: border-box; /* 让 width/height 包含 padding 与 border。 */
+}
+
+/* body 是页面主容器，这里进行居中布局。 */
+body {
+  margin: 0; /* 去除浏览器默认外边距。 */
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; /* 设置中文友好字体栈。 */
+  color: var(--text); /* 使用全局文本色变量。 */
+  background: radial-gradient(circle at top, #2a2a2a, var(--bg)); /* 径向渐变提升层次感。 */
+  min-height: 100vh; /* 至少占满视口高度。 */
+  display: flex; /* 使用 Flex 布局进行水平/垂直居中。 */
+  align-items: center; /* 交叉轴居中。 */
+  justify-content: center; /* 主轴居中。 */
+  padding: 20px 20px 64px; /* 给底部状态条留空间。 */
+}
+
+/* layout 控制左右两栏。 */
+.layout {
+  width: min(1180px, 100%); /* 最大宽度 1180，超窄屏时缩小到 100%。 */
+  display: grid; /* 使用网格布局更容易做左右分栏。 */
+  grid-template-columns: 420px 1fr; /* 左侧稍微加宽，容纳商店按钮。 */
+  gap: 20px; /* 两栏之间间距。 */
+}
+
+/* 左右 panel 统一面板风格。 */
+.panel,
+.game-wrap {
+  background: var(--panel); /* 统一面板背景。 */
+  border: 2px solid #333; /* 轻微描边模拟像素 UI 框。 */
+  border-radius: 12px; /* 圆角，降低视觉锐利度。 */
+  padding: 16px; /* 内边距让内容不贴边。 */
+}
+
+/* 一级标题样式。 */
+h1 {
+  margin-top: 0; /* 去掉默认上边距，避免面板顶部太空。 */
+  color: var(--accent); /* 强调标题色。 */
+  font-size: 24px; /* 标题字号。 */
+}
+
+/* 阶段四新增：商店面板样式。 */
+.shop {
+  margin: 12px 0 16px; /* 与上下内容拉开距离。 */
+  padding: 12px; /* 商店容器内边距。 */
+  border: 1px solid #555; /* 细边框区分模块。 */
+  background: #151515; /* 稍深底色形成层次。 */
+  border-radius: 8px; /* 圆角与整体一致。 */
+}
+
+/* 商店标题。 */
+.shop h2 {
+  margin: 0 0 10px; /* 仅保留下边距。 */
+  font-size: 16px; /* 小标题大小。 */
+  color: #ffe082; /* 暖色强调。 */
+}
+
+/* 商店每一行按钮容器。 */
+.shop .row {
+  display: flex; /* 水平排列按钮。 */
+  flex-wrap: wrap; /* 空间不足时自动换行。 */
+  gap: 8px; /* 按钮间距。 */
+  margin-bottom: 8px; /* 行与行之间留白。 */
+}
+
+/* 去掉最后一行多余边距。 */
+.shop .row:last-child {
+  margin-bottom: 0;
+}
+
+/* 通用按钮风格。 */
+button {
+  border: 1px solid #666; /* 按钮边框。 */
+  background: #2a2a2a; /* 按钮底色。 */
+  color: #f5f5f5; /* 按钮文字颜色。 */
+  padding: 6px 10px; /* 按钮内边距。 */
+  border-radius: 6px; /* 轻微圆角。 */
+  cursor: pointer; /* 鼠标悬浮显示手型。 */
+}
+
+/* 悬浮状态反馈。 */
+button:hover {
+  background: #3a3a3a; /* 悬浮时变亮一点。 */
+}
+
+/* HUD 信息块样式。 */
+.hud {
+  margin-top: 16px; /* 与上方列表拉开距离。 */
+  padding: 12px; /* HUD 内容内边距。 */
+  border: 1px dashed #666; /* 使用虚线边框突出信息区。 */
+  background: #161616; /* 轻微更深底色。 */
+  line-height: 1.6; /* 增加行高提升可读性。 */
+}
+
+/* 画布样式：关闭平滑，保留像素感。 */
+canvas {
+  width: 100%; /* 视觉上适应容器宽度。 */
+  max-width: 640px; /* 防止被拉太大。 */
+  image-rendering: pixelated; /* 关键属性：像素风不被模糊插值。 */
+  border: 2px solid #444; /* 给画布加边框。 */
+  background: #0b0b0b; /* 画布底色（如果没绘制区域能看到）。 */
+}
+
+/* 图例文本。 */
+.legend {
+  margin: 10px 0 0; /* 上边距与画布分隔。 */
+  color: #ccc; /* 次级文字颜色。 */
+  font-size: 14px; /* 图例字号稍小。 */
+}
+
+/* 阶段四新增：底部状态条。 */
+.status-bar {
+  position: fixed; /* 固定在视口底部。 */
+  left: 0; /* 从左边界开始。 */
+  right: 0; /* 延伸到右边界。 */
+  bottom: 0; /* 锚定底部。 */
+  min-height: 40px; /* 保证有足够高度。 */
+  padding: 10px 16px; /* 文字留边距。 */
+  background: rgba(15, 15, 15, 0.95); /* 半透明深色背景。 */
+  border-top: 1px solid #444; /* 顶部分割线。 */
+  color: #b3e5fc; /* 文本颜色偏亮，易识别。 */
+  font-size: 14px; /* 字号稍小。 */
+}
+
+/* 响应式：在小屏幕下切成上下布局。 */
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr; /* 单列布局，移动端更自然。 */
+  }
+}

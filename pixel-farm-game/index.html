@@ -1,0 +1,56 @@
+<!doctype html> <!-- 声明这是 HTML5 文档，告诉浏览器用标准模式渲染页面。 -->
+<html lang="zh-CN"> <!-- 根标签，lang=zh-CN 表示页面主要语言为简体中文。 -->
+  <head> <!-- head 区域用于放元信息、样式和标题，不直接展示正文内容。 -->
+    <meta charset="UTF-8" /> <!-- 指定字符编码为 UTF-8，避免中文乱码。 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- 让移动端按设备宽度渲染，初始缩放为 1。 -->
+    <title>像素种田经营入门小游戏</title> <!-- 浏览器标签页显示的标题。 -->
+    <link rel="stylesheet" href="./style.css" /> <!-- 引入同目录的 CSS 样式文件。 -->
+  </head>
+  <body> <!-- body 是页面可见内容区域。 -->
+    <main class="layout"> <!-- 使用 main 表示页面主体区域，class 用于样式定位。 -->
+      <section class="panel"> <!-- 左侧信息面板，放游戏说明和 HUD 文本。 -->
+        <h1>像素种田经营（阶段四）</h1> <!-- 主标题，告诉你现在已经加入商店面板和自动保存。 -->
+        <p>目标：理解“可视化商店 + 批量交易 + 自动保存”。</p> <!-- 一句话说明本阶段教学目标。 -->
+
+        <div class="shop" id="shop-panel"> <!-- 阶段四新增：可视化商店控制区。 -->
+          <h2>商店面板</h2> <!-- 小标题。 -->
+          <div class="row"> <!-- 第一行：作物切换按钮。 -->
+            <button data-action="select-turnip">选择萝卜 (1)</button> <!-- 选择萝卜按钮。 -->
+            <button data-action="select-corn">选择玉米 (2)</button> <!-- 选择玉米按钮。 -->
+          </div>
+          <div class="row"> <!-- 第二行：买入按钮。 -->
+            <button data-action="buy-1">买种子 x1 (B)</button> <!-- 买 1 粒种子。 -->
+            <button data-action="buy-5">买种子 x5</button> <!-- 买 5 粒种子。 -->
+          </div>
+          <div class="row"> <!-- 第三行：卖出按钮。 -->
+            <button data-action="sell-1">卖作物 x1 (X)</button> <!-- 卖 1 个作物。 -->
+            <button data-action="sell-5">卖作物 x5</button> <!-- 卖 5 个作物。 -->
+          </div>
+          <div class="row"> <!-- 第四行：存档与天数推进按钮。 -->
+            <button data-action="next-day">下一天 (空格)</button> <!-- 推进一天。 -->
+            <button data-action="save">手动存档 (P)</button> <!-- 手动存档。 -->
+            <button data-action="load">手动读档 (O)</button> <!-- 手动读档。 -->
+          </div>
+        </div>
+
+        <ul> <!-- 无序列表，用于列出操作说明。 -->
+          <li>方向键 / WASD：移动光标</li> <!-- 操作说明 1。 -->
+          <li>J：锄地，K：播种，L：浇水，H：收获</li> <!-- 操作说明 2。 -->
+          <li>1 / 2：切换作物，B/X：买卖 1 个</li> <!-- 操作说明 3。 -->
+          <li>P/O：手动存读档，关键动作会自动保存</li> <!-- 操作说明 4。 -->
+        </ul>
+
+        <div id="hud" class="hud"></div> <!-- HUD 容器，JS 会把日期金币背包等动态写进来。 -->
+      </section>
+
+      <section class="game-wrap"> <!-- 右侧游戏区域，放 canvas 与图例。 -->
+        <canvas id="game" width="640" height="640" aria-label="像素农场画布"></canvas> <!-- Canvas 是我们绘制 2D 游戏的核心。 -->
+        <p class="legend">图例：绿色=草地，棕色=耕地，点颜色区分作物，蓝边=已浇水，亮色=成熟。</p> <!-- 显示地块颜色语义，方便学习状态机。 -->
+      </section>
+    </main>
+
+    <div id="status-bar" class="status-bar" role="status" aria-live="polite">准备就绪。</div> <!-- 阶段四新增：底部状态条，用于提示自动保存和操作反馈。 -->
+
+    <script type="module" src="./src/main.js"></script> <!-- 以 ESModule 方式加载主入口脚本。 -->
+  </body>
+</html>
