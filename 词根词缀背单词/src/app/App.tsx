@@ -6,6 +6,7 @@ import { MorphemePage } from '../routes/MorphemePage';
 import { NotebookDetailPage } from '../routes/NotebookDetailPage';
 import { NotebookListPage } from '../routes/NotebookListPage';
 import { useAppStore } from '../stores/useAppStore';
+import { ToolLabPage } from '../routes/ToolLabPage';
 
 export function App() {
   const settings = useAppStore((s) => s.settings);
@@ -21,6 +22,7 @@ export function App() {
           <Route path="/morphemes/prefixes" element={<MorphemePage />} />
           <Route path="/morphemes/roots" element={<MorphemePage />} />
           <Route path="/morphemes/suffixes" element={<MorphemePage />} />
+          <Route path="/tools" element={<ToolLabPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
